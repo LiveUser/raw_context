@@ -1,5 +1,32 @@
 import 'package:flutter/material.dart';
 
+void main() {
+  return runApp(
+    MaterialApp(
+      home: Scaffold(
+        body: Center(
+          child: RawContext(
+            textColor: Colors.white,
+            contextMenuColor: Colors.lightBlue.shade700,
+            child: CircleAvatar(
+              radius: 60,
+              backgroundColor: Colors.green,
+              child: Icon(
+                Icons.check,
+                color: Colors.white,
+                size: 60,
+              ),
+            ),
+            items: [RawContextItem(onPressed: (){
+              print('I am sexy');
+            }, optionText: 'Delete')],
+          ),
+        ),
+      ),
+    ),
+  );
+}
+
 class RawContextItem{
   String optionText;
   Function onPressed;
@@ -14,7 +41,8 @@ class RawContext extends StatelessWidget {
   double iconSize;
   double textSize;
   String font;
-  RawContext({@required this.items,this.iconColor,this.contextMenuColor,this.textColor,this.iconSize,this.textSize,this.font});
+  Widget child;
+  RawContext({@required this.items,this.iconColor,this.contextMenuColor,this.textColor,this.iconSize,this.textSize,this.font,this.child});
   @override
   Widget build(BuildContext context) {
     List<String> itemsNames = [];
@@ -46,7 +74,7 @@ class RawContext extends StatelessWidget {
         //Call its function
         items[selectionIndex].onPressed();
       },
-      icon: Icon(
+      child: this.child ?? Icon(
         Icons.more_vert,
         color: iconColor,
         size: iconSize,
