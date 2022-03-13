@@ -25,6 +25,7 @@ Full Example:
 
 ~~~dart
 import 'package:flutter/material.dart';
+import 'package:raw_context/raw_context.dart';
 
 void main() {
   return runApp(
@@ -48,7 +49,7 @@ void main() {
               onPressed: (){
                 print('I am sexy');
               },
-              optionText: 'Delete'),
+              item: Text("Click Me")),
             ],
           ),
         ),
